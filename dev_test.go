@@ -3,7 +3,7 @@ package NPM
 import (
 	"fmt"
 	model "github.com/agitanurfd/undanganRapat/model"
-	"github.com/agitanurfd/undanganRapat/Module"
+	"github.com/agitanurfd/undanganRapat/module"
 	"testing"
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 )
