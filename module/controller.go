@@ -109,7 +109,7 @@ func GetJamRapatFromDurasi(db *mongo.Database, durasi string, col string) (rpt m
 
 func GetUniversitasFromJurusan(db *mongo.Database, jurusan string, col string) (unv model.Universitas) {
 	universitas := db.Collection(col)
-	filter := bson.M{"universitas.jurusan": universitas}
+	filter := bson.M{"jurusan": jurusan}
 	err := universitas.FindOne(context.TODO(), filter).Decode(&unv)
 	if err != nil {
 		fmt.Printf("GetUniversitasFromJurusan: %v\n", err)
@@ -119,7 +119,7 @@ func GetUniversitasFromJurusan(db *mongo.Database, jurusan string, col string) (
 
 func GetRuanganFromNoRuangan(db *mongo.Database, no_ruangan string, col string) (rg model.Ruangan) {
 	ruangan := db.Collection(col)
-	filter := bson.M{"ruangan": ruangan}
+	filter := bson.M{"no_ruangan": no_ruangan}
 	err := ruangan.FindOne(context.TODO(), filter).Decode(&rg)
 	if err != nil {
 		fmt.Printf("GetRuanganFromNoRuangan: %v\n", err)

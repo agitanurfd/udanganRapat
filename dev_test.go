@@ -63,30 +63,30 @@ func TestInsertRuangan(t *testing.T) {
 
 func TestGetUndanganRapatFromNamaTamu(t *testing.T) {
 	nama := "Jaemin"
-	biodata:=module.GetUndanganRapatFromNamaTamu(nama, module.MongoConn, "undanganrapat")
+	biodata:=module.GetUndanganRapatFromNamaTamu(module.MongoConn, nama, "undanganrapat")
 	fmt.Println(biodata)
 }
 
 func TestGetTamuFromJabatan(t *testing.T) {
-	jabatan := "dosen"
-	biodata :=module.GetUndanganRapatFromNamaTamu(nama, module.MongoConn, "tamu")
+	jabatan := "Dosen"
+	biodata :=module.GetTamuFromJabatan(module.MongoConn, jabatan,  "tamu")
 	fmt.Println(biodata)
 }
 
 func TestGetJamRapatFromDurasi(t *testing.T) {
-	durasi  := "1 Jam"
-	jamrapat:=module.JamRapatFromDurasi(durasi, module.MongoConn, "jamrapat")
+	durasi  := "1 jam"
+	jamrapat:=module.GetJamRapatFromDurasi(module.MongoConn, durasi, "jamrapat")
 	fmt.Println(jamrapat)
 }
 
 func TestGetUniversitasFromJurusan(t *testing.T) {
 	jurusan := "Teknik Informatika"
-	prodi   :=module.GetUniversitasFromJurusan(prodi, module.MongoConn, "jurusan")
+	prodi   :=module.GetUniversitasFromJurusan(module.MongoConn, jurusan, "universitas")
 	fmt.Println(prodi)
 }
 
 func TestGetRuanganFromNoRuangan(t *testing.T) {
 	no_ruangan := "315"
-	location:=module.GetRuanganFromNoRuangan(location, module.MongoConn, "no_ruangan")
-	fmt.Println(biodata)
+	ruangan:=module.GetRuanganFromNoRuangan(module.MongoConn, no_ruangan, "ruangan")
+	fmt.Println(ruangan)
 }
