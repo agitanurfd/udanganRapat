@@ -127,3 +127,16 @@ func GetRuanganFromNoRuangan(db *mongo.Database, no_ruangan string, col string) 
 	return rg
 }
 
+func GetAllUndanganRapat(t *testing.T) {
+	lokasi := "ULBI"
+	phone_number := "681234567891"
+	biodata := model.Tamu{
+		Nama : "Jaemin",
+		Phone_number : "68987544914",
+	}
+	prodi := model.Universitas{
+		Jurusan : "Teknik Informatika",
+	}
+	hasil:=module.InsertUndanganRapat(module.MongoConn, "undanganrapat", lokasi , phone_number, biodata, prodi)
+	fmt.Println(hasil)
+}
