@@ -90,3 +90,17 @@ func TestGetRuanganFromNoRuangan(t *testing.T) {
 	ruangan:=module.GetRuanganFromNoRuangan(module.MongoConn, no_ruangan, "ruangan")
 	fmt.Println(ruangan)
 }
+
+func GetAllUndanganRapat(t *testing.T) {
+	lokasi := "ULBI"
+	phone_number := "681234567891"
+	biodata := model.Tamu{
+		Nama : "Jaemin",
+		Phone_number : "68987544914",
+	}
+	prodi := model.Universitas{
+		Jurusan : "Teknik Informatika",
+	}
+	hasil:=module.InsertUndanganRapat(module.MongoConn, "undanganrapat", lokasi , phone_number, biodata, prodi)
+	fmt.Println(hasil)
+}
