@@ -128,9 +128,9 @@ func GetRuanganFromNoRuangan(db *mongo.Database, no_ruangan string, col string) 
 }
 
 func GetAllUndanganRapat(db *mongo.Database, col string) (data []model.UndanganRapat) {
-	karyawan := db.Collection(col)
+	undangan := db.Collection(col)
 	filter := bson.M{}
-	cursor, err := karyawan.Find(context.TODO(), filter)
+	cursor, err := undangan.Find(context.TODO(), filter)
 	if err != nil {
 		fmt.Println("GetALLData :", err)
 	}

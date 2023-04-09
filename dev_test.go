@@ -105,7 +105,6 @@ func GetAllUndanganRapat(t *testing.T) {
 	fmt.Println(hasil)
 }
 
-
 func TestGetAllUndanganRapat(t *testing.T) {
 	data:=module.GetAllUndanganRapat(module.MongoConn, "undanganrapat")
 	fmt.Println(data)
