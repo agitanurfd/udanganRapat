@@ -104,3 +104,9 @@ func GetAllUndanganRapat(t *testing.T) {
 	hasil:=module.InsertUndanganRapat(module.MongoConn, "undanganrapat", lokasi , phone_number, biodata, prodi)
 	fmt.Println(hasil)
 }
+
+
+func TestGetAllUndanganRapat(t *testing.T) {
+	data:=module.GetAllUndanganRapat(module.MongoConn, "undanganrapat")
+	fmt.Println(data)
+}
