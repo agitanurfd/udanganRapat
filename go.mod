@@ -3,7 +3,6 @@ module github.com/agitanurfd/undanganRapat
 go 1.20
 
 require (
-	github.com/Febriand1/Nilai v0.0.3
 	github.com/aiteung/atdb v0.0.9
 	go.mongodb.org/mongo-driver v1.11.3
 )
