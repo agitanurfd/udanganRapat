@@ -183,7 +183,7 @@ func GetAllUniversitas(db *mongo.Database, col string) (data []model.Universitas
 	return
 }
 
-func GetAllLokasi(db *mongo.Database, col string) (data []model.Lokasi) {
+func GetAllRuangan(db *mongo.Database, col string) (data []model.Ruangan) {
 	undangan := db.Collection(col)
 	filter := bson.M{}
 	cursor, err := undangan.Find(context.TODO(), filter)
@@ -197,7 +197,7 @@ func GetAllLokasi(db *mongo.Database, col string) (data []model.Lokasi) {
 	return
 }
 
-func GetAllRuangan(db *mongo.Database, col string) (data []model.Ruangan) {
+func GetAllLokasi(db *mongo.Database, col string) (data []model.Lokasi) {
 	undangan := db.Collection(col)
 	filter := bson.M{}
 	cursor, err := undangan.Find(context.TODO(), filter)
