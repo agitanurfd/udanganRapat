@@ -140,3 +140,73 @@ func GetAllUndanganRapat(db *mongo.Database, col string) (data []model.UndanganR
 	}
 	return
 }
+
+func GetAllTamu(db *mongo.Database, col string) (data []model.Tamu) {
+	undangan := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := undangan.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetALLData :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetAllJamRapat(db *mongo.Database, col string) (data []model.JamRapat) {
+	undangan := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := undangan.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetALLData :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetAllUniversitas(db *mongo.Database, col string) (data []model.Universitas) {
+	undangan := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := undangan.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetALLData :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetAllLokasi(db *mongo.Database, col string) (data []model.Lokasi) {
+	undangan := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := undangan.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetALLData :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func GetAllRuangan(db *mongo.Database, col string) (data []model.Ruangan) {
+	undangan := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := undangan.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetALLData :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}

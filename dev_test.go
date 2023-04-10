@@ -13,11 +13,11 @@ func TestInsertUndanganRapat(t *testing.T) {
 	lokasi := "ULBI"
 	phone_number := "681234567891"
 	biodata := model.Tamu{
-		Nama : "Jaemin",
-		Phone_number : "68987544914",
+		Nama : "Popo",
+		Phone_number : "68093284827492",
 	}
 	prodi := model.Universitas{
-		Jurusan : "Teknik Informatika",
+		Jurusan : "Akuntansi",
 	}
 	hasil:=module.InsertUndanganRapat(module.MongoConn, "undanganrapat", lokasi , phone_number, biodata, prodi)
 	fmt.Println(hasil)
@@ -107,5 +107,30 @@ func GetAllUndanganRapat(t *testing.T) {
 
 func TestGetAllUndanganRapat(t *testing.T) {
 	data:=module.GetAllUndanganRapat(module.MongoConn, "undanganrapat")
+	fmt.Println(data)
+}
+
+func TestGetAllTamu(t *testing.T) {
+	data:=module.GetAllTamu(module.MongoConn, "tamu")
+	fmt.Println(data)
+}
+
+func TestGetAllJamRapat(t *testing.T) {
+	data:=module.GetAllJamRapat(module.MongoConn, "jamrapat")
+	fmt.Println(data)
+}
+
+func TestGetAllUniversitas(t *testing.T) {
+	data:=module.GetAllUniversitas(module.MongoConn, "universitas")
+	fmt.Println(data)
+}
+
+func TestGetAllLokasi(t *testing.T) {
+	data:=module.GetAllLokasi(module.MongoConn, "lokasi")
+	fmt.Println(data)
+}
+
+func TestGetAllRuangan(t *testing.T) {
+	data:=module.GetAllRuangan(module.MongoConn, "ruangan")
 	fmt.Println(data)
 }
