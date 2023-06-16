@@ -4,6 +4,7 @@ import (
 	"fmt"
 	model "github.com/agitanurfd/undanganRapat/model"
 	"github.com/agitanurfd/undanganRapat/module"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"testing"
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -133,4 +134,24 @@ func TestGetAllLokasi(t *testing.T) {
 func TestGetAllRuangan(t *testing.T) {
 	data:=module.GetAllRuangan(module.MongoConn, "ruangan")
 	fmt.Println(data)
+}
+
+// Delete Data
+func TestDeleteUndanganRapatByID(t *testing.T) {
+	id := "6423e77373b6664c8e084964" // ID data yang ingin dihapus
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		t.Fatalf("error converting id to ObjectID: %v", err)
+	}
+
+	err = module.DeleteUndanganRapatByID(objectID, module.MongoConn, "undanganrapat")
+	if err != nil {
+		t.Fatalf("error calling DeleteUndanganRapatByID: %v", err)
+	}
+
+	// Verifikasi bahwa data telah dihapus dengan melakukan pengecekan menggunakan GetUndanganFromID
+	_, err = module.GetUndanganRapatFromID(objectID, module.MongoConn, "undanganrapat")
+	if err == nil {
+		t.Fatalf("expected data to be deleted, but it still exists")
+	}
 }

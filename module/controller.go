@@ -3,6 +3,7 @@ package module
 import (
 	"context"
 	"fmt"
+	"errors"
 	"github.com/aiteung/atdb"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -178,6 +179,20 @@ func GetUndanganRapatFromNamaTamu(db *mongo.Database, nama string, col string) (
 	return datang
 }
 
+// get baru
+func GetUndanganRapatFromID(_id primitive.ObjectID, db *mongo.Database, col string) (undang model.UndanganRapat, errs error) {
+	undanganrapat := db.Collection(col)
+	filter := bson.M{"_id": _id}
+	err := undanganrapat.FindOne(context.TODO(), filter).Decode(&undang)
+	if err != nil {
+		if errors.Is(err, mongo.ErrNoDocuments) {
+			return undang, fmt.Errorf("no data found for ID %s", _id)
+		}
+		return undang, fmt.Errorf("error retrieving data for ID %s: %s", _id, err.Error())
+	}
+	return undang, nil
+}
+
 func GetTamuFromJabatan(db *mongo.Database, jabatan string, col string) (tm model.Tamu) {
 	tamu := db.Collection(col)
 	filter := bson.M{"jabatan": jabatan}
@@ -300,4 +315,39 @@ func GetAllLokasi(db *mongo.Database, col string) (data []model.Lokasi) {
 		fmt.Println(err)
 	}
 	return
+}
+
+// Update Data
+func UpdateUndanganRapat(db *mongo.Database, col string, lokasi string, phone_number string, biodata model.Tamu, prodi model.Universitas) (insertedID primitive.ObjectID, err error) {
+	undanganrapat := bson.M{
+		"location":     lokasi,
+		"phone_number": phone_number,
+		"datetime":     primitive.NewDateTimeFromTime(time.Now().UTC()),
+		"biodata" :     biodata,
+		"prodi"   :     prodi,
+	}
+	result, err := db.Collection(col).InsertOne(context.Background(), undanganrapat)
+	if err != nil {
+		fmt.Printf("UpdateUndanganRapat: %v\n", err)
+		return
+	}
+	insertedID = result.InsertedID.(primitive.ObjectID)
+	return insertedID, nil
+}
+
+// Delete Data
+func DeleteUndanganRapatByID(_id primitive.ObjectID, db *mongo.Database, col string) error {
+	undanganrapat := db.Collection(col)
+	filter := bson.M{"_id": _id}
+
+	result, err := undanganrapat.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		return fmt.Errorf("error deleting data for ID %s: %s", _id, err.Error())
+	}
+
+	if result.DeletedCount == 0 {
+		return fmt.Errorf("data with ID %s not found", _id)
+	}
+
+	return nil
 }
